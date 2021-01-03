@@ -8,12 +8,12 @@ class ContaBancaria
 
     def transferir(outra_conta, valor)
         #Logica de Transferencia
-        if salvo >= valor
+        if saldo >= valor
             debitar valor 
             outra_conta.depositar(valor)
         else
             #Não faço nada
-            puts "Impossivel transferir! Saldo insuficiente"
+            raise "Impossivel transferir! Saldo insuficiente"
         end
     end
 
@@ -21,7 +21,11 @@ class ContaBancaria
         @valor
     end
 
-    private def debitar(valor)
-        @valor -= valor
+    private def debitar(valor_para_debitar)
+        @valor -= valor_para_debitar
+    end
+
+    protected def depositar(valor_para_depositar)
+        @valor += valor_para_depositar
     end
 end 
